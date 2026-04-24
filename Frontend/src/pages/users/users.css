@@ -1,0 +1,84 @@
+body {
+    background: black;
+    color: #00ff9f;
+    font-family: monospace;
+    overflow: hidden;
+}
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    text-shadow: 0 0 10px #00ff9f;
+}
+
+input, select, button {
+    margin: 5px;
+    padding: 8px;
+    background: black;
+    border: 1px solid #00ff9f;
+    color: #00ff9f;
+}
+
+button:hover {
+    background: #00ff9f;
+    color: black;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: rgba(0,0,0,0.9);
+}
+
+th, td {
+    border: 1px solid #00ff9f;
+    padding: 10px;
+}
+
+tr:hover {
+    background: rgba(0,255,159,0.1);
+}
+
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    background: black;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    background: rgba(0,0,0,0.8);
+    box-shadow: 0 0 20px #00ff9f;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    border: 1px solid #00ff9f;
+    padding: 20px;
+    background: black;
+    box-shadow: 0 0 20px #00ff9f;
+}

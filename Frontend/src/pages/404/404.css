@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    background: black;
+    color: #00ff9f;
+    font-family: monospace;
+    overflow: hidden;
+}
+
+#error-container, .error-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 120px;
+    text-shadow: 0 0 20px #00ff9f;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: black;
+    border: 1px solid #00ff9f;
+    color: #00ff9f;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #00ff9f;
+    color: black;
+}
+
+#matrix {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}

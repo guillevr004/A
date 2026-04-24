@@ -1,13 +1,48 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Router</title>
+</head>
+<body>
+
+<script>
+const path = window.location.pathname.toLowerCase();
+const user = localStorage.getItem("usuario");
+
+// 🔐 HOME
+if (path === "/" || path === "/index.html") {
+    if (user) {
+        window.location.replace("/dashboard");
+    } else {
+        window.location.replace("/auth");
+    }
+}
+
+// 📊 DASHBOARD
+else if (path === "/dashboard") {
+    window.location.replace("/src/pages/dashboard/index.html");
+}
+
+// 👤 USERS
+else if (path === "/users") {
+    window.location.replace("/src/pages/users/index.html");
+}
+
+// 🎓 STUDENTS
+else if (path === "/students") {
+    window.location.replace("/src/pages/students/index.html");
+}
+
+// 🔑 LOGIN
+else if (path === "/auth") {
+    window.location.replace("/src/pages/auth/index.html");
+}
+
+// ❌ 404
+else {
+    window.location.replace("/src/pages/404/index.html");
+}
+</script>
+
+</body>
 </html>

@@ -6,12 +6,12 @@ export const getAll = async () => {
 };
 
 export const create = async (data) => {
-    const {id, first_name, last_name, phone, email, adress, whatsapp_active, created_at, updated_at} =
+    const {id, first_name, last_name, phone, email, address, whatsapp_active, created_at, updated_at} =
         data;
 
     const [result] = await db.query(
-        `INSERT INTO parents (id, first_name, last_name, phone, email, adress, whatsapp_active, created_at, updated_at)
+        `INSERT INTO guardians (id, first_name, last_name, phone, email, address, whatsapp_active, created_at, updated_at)
         VALUES (?,?,?,?,?,?,?,?,?)`,
-        [id, first_name, last_name, phone, email, adress, whatsapp_active, created_at, updated_at]
+        [id, first_name, last_name, phone, email, address, whatsapp_active, created_at, updated_at]
     );
 };

@@ -3,10 +3,18 @@ import { randomUUID } from "crypto";
 
 export const getStudent = async (req, res) => {
     try{
-        const data = await getAll();
-        res.status(200).json(data);
+        const students = await getAll();
+
+        res.json({
+            ok: true,
+            students
+        });
+
     } catch (error) {
-        res.status(500).json({ message: "Algo Paso", err: error });
+        res.status(500).json({
+            ok: false,
+            message: "Error al obtener estudiantes"
+        });
     }
 };
 

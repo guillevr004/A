@@ -1,0 +1,130 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo negro total */
+body {
+    height: 100vh;
+    font-family: 'Courier New', monospace;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #00ff9f;
+    overflow: hidden;
+}
+
+/* Fondo Matrix (lluvia fake con gradiente animado) */
+#back-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,255,0,0.15) 0px,
+        rgba(0,255,0,0.15) 2px,
+        transparent 2px,
+        transparent 6px
+    );
+    animation: rain 0.5s linear infinite;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+@keyframes rain {
+    from { background-position: 0 0; }
+    to { background-position: 0 100px; }
+}
+
+/* Card tipo terminal */
+#login {
+    position: relative;
+    z-index: 2;
+    width: 340px;
+    padding: 30px;
+    border: 1px solid #00ff9f;
+    background: rgba(0, 0, 0, 0.85);
+    box-shadow: 
+        0 0 10px #00ff9f,
+        0 0 25px #00ff9f inset;
+}
+
+/* Título */
+#login h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00ff9f;
+    text-shadow: 0 0 8px #00ff9f;
+    letter-spacing: 2px;
+}
+
+/* Labels */
+#login label {
+    font-size: 13px;
+    color: #00ff9f;
+    margin-top: 10px;
+    display: block;
+}
+
+/* Inputs */
+#login input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: none;
+    border-bottom: 1px solid #00ff9f;
+    background: transparent;
+    color: #00ff9f;
+    outline: none;
+    font-family: inherit;
+}
+
+/* Cursor tipo terminal */
+#login input:focus {
+    border-bottom: 1px solid #00ff9f;
+    box-shadow: 0 2px 10px #00ff9f;
+}
+
+/* Botón */
+#login button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #00ff9f;
+    background: transparent;
+    color: #00ff9f;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.2s;
+}
+
+/* Hover glitch */
+#login button:hover {
+    background: #00ff9f;
+    color: black;
+    box-shadow: 0 0 15px #00ff9f;
+}
+
+/* Efecto typing en el título */
+#login h2::after {
+    content: "_";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+
+#matrix {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: black;
+}

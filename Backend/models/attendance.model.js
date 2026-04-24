@@ -6,13 +6,13 @@ export const getAll = async () => {
 };
 
 export const create = async (data) => {
-    const {id, student_id, date, status, check_in, check_out, observations, registered_by, created_at, updated_at} =
+    const {id, student_id, attendance_date, status, check_in_time, check_out_time, observation, recorded_by_user_id, created_at, updated_at} =
         data;
 
     const [result] = await db.query(
-        `INSERT INTO payments (id, student_id, date, status, check_in, check_out, observations, registered_by, created_at, updated_at)
+        `INSERT INTO attendance (id, student_id, attendance_date, status, check_in_time, check_out_time, observation, recorded_by_user_id, created_at, updated_at)
         VALUES (?,?,?,?,?,?,?,?,?,?)`,
 
-        [id, student_id, date, status, check_in, check_out, observations, registered_by, created_at, updated_at]
+        [id, student_id, attendance_date, status, check_in_time, check_out_time, observation, recorded_by_user_id, created_at, updated_at]
     );
 };

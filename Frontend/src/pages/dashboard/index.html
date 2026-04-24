@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Dashboard</title>
+    <script src="/src/shared/js/router.js"></script>
+    <link rel="stylesheet" href="./dashboard.css">
+    <link rel="stylesheet" href="../../shared/css/main.css"/>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="dashboard">
+    <aside class="sidebar">
+        <h2>SYSTEM</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li onclick="window.location.href='../users/index.html'">Users</li>
+            <li>Logs</li>
+            <li>Security</li>
+            <li>Settings</li>
+            <li id="logout" style="margin-top:20px; color:#ff4d4d; cursor:pointer;">Logout </li>
+            
+        </ul>
+    </aside>
+
+    <main class="content">
+        <header>
+            <h1 id="welcome">ADMIN PANEL</h1>
+        </header>
+
+        <section class="cards">
+            <div class="card">Students: <span id="students">...</span></div>
+            <div class="card">Pending Payments: <span id="payments">...</span></div>
+            <div class="card">Absences Today: <span id="absences">...</span></div>
+        </section>
+
+        <section class="charts">
+            <div class="chart-container">
+                <canvas id="studentsChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="paymentsChart"></canvas>
+            </div>
+        </section>
+
+        <section class="terminal">
+            <p>> Initializing system...</p>
+            <p>> Establishing secure connection...</p>
+            <p>> Loading modules...</p>
+        </section>
+    </main>
+</div>
+
+<script>
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+
+const letters = "アァカサタナハマヤャラワン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const fontSize = 16;
+
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
+
+function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff9f";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw, 33);
+
+window.addEventListener("resize", () => {
+    resizeCanvas();
+    columns = Math.floor(canvas.width / fontSize);
+    drops = Array(columns).fill(1);
+});
+</script>
+
+<script type="module" src="./dashboard.js"></script>
+</body>
+</html>
