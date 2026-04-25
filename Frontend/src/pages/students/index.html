@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students - Matrix</title>
-    <script src="/src/shared/js/router.js"></script>
-    <link rel="stylesheet" href="./students.css">
     <link rel="stylesheet" href="../../shared/css/main.css"/>
+    <link rel="stylesheet" href="./students.css">
 </head>
 
 <body>
@@ -16,6 +15,24 @@
 <div class="container">
 
     <h1>STUDENT DATABASE</h1>
+
+    <!-- 🔍 BUSCADOR -->
+    <div class="search-box">
+        <input type="text" id="searchStudent" placeholder="Search by name or code">
+    </div>
+
+    <!-- ➕ FORM -->
+    <form id="studentForm">
+        <input type="text" id="student_code" placeholder="Code" required>
+        <input type="text" id="first_name" placeholder="First Name" required>
+        <input type="text" id="last_name" placeholder="Last Name" required>
+        <input type="text" id="document_type" placeholder="Doc Type">
+        <input type="text" id="document_number" placeholder="Document">
+        <input type="text" id="grade" placeholder="Grade">
+        <input type="number" id="school_year" placeholder="Year">
+
+        <button type="submit">SAVE STUDENT</button>
+    </form>
 
     <div class="table-container">
         <table>
@@ -29,9 +46,7 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody id="studentsTable">
-
-            </tbody>
+            <tbody id="studentsTable"></tbody>
         </table>
     </div>
 

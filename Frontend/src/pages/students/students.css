@@ -42,29 +42,74 @@ h1 {
     overflow-x: auto;
 }
 
-/* TABLA */
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
-/* HEADER */
-th {
-    padding: 12px;
-    border-bottom: 1px solid #00ff9f;
-    text-align: left;
-    text-shadow: 0 0 5px #00ff9f;
-}
-
-/* CELDAS */
-td {
+th, td {
     padding: 10px;
-    border-bottom: 1px solid rgba(0,255,159,0.2);
+    text-align: left;
+    border-bottom: 1px solid rgba(0,255,159,0.3);
 }
 
-/* HOVER FILAS */
+th {
+    color: #00ff9f;
+}
+
 tr:hover {
+    background: rgba(0,255,159,0.05);
+}
+
+/* 🔍 BUSCADOR */
+.search-box {
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    background: black;
+    border: 1px solid #00ff9f;
+    color: #00ff9f;
+    outline: none;
+}
+
+/* FORM CONTENEDOR */
+#studentForm {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+
+    background: rgba(0,0,0,0.85);
+    border: 1px solid #00ff9f;
+    box-shadow: 0 0 15px #00ff9f;
+    padding: 15px;
+}
+/* INPUTS */
+#studentForm input {
+    all: unset;
+    padding: 10px;
+    background: black;
+    border: 1px solid #00ff9f;
+    color: #00ff9f;
+    outline: none;
+}
+
+/* BOTÓN */
+#studentForm button {
+    grid-column: span 3;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #00ff9f;
+    color: #00ff9f;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#studentForm button:hover {
     background: #00ff9f;
     color: black;
-    transition: 0.2s;
+    box-shadow: 0 0 10px #00ff9f;
 }
