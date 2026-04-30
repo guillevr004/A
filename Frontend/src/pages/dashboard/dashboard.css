@@ -1,11 +1,9 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* BODY */
 body {
     height: 100vh;
     background: black;
@@ -14,7 +12,6 @@ body {
     overflow: hidden;
 }
 
-/* MATRIX */
 #matrix {
     position: fixed;
     top: 0;
@@ -24,7 +21,6 @@ body {
     z-index: 0;
 }
 
-/* LAYOUT */
 .dashboard {
     position: relative;
     z-index: 2;
@@ -32,7 +28,6 @@ body {
     height: 100vh;
 }
 
-/* SIDEBAR */
 .sidebar {
     width: 220px;
     background: rgba(0,0,0,0.9);
@@ -61,20 +56,17 @@ body {
     color: black;
 }
 
-/* CONTENT */
 .content {
     flex: 1;
     padding: 20px;
     background: rgba(0,0,0,0.7);
 }
 
-/* HEADER */
 header h1 {
     margin-bottom: 20px;
     text-shadow: 0 0 10px #00ff9f;
 }
 
-/* CARDS */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -95,7 +87,6 @@ header h1 {
     color: black;
 }
 
-/* TERMINAL */
 .terminal {
     margin-top: 20px;
     padding: 15px;

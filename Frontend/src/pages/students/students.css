@@ -1,11 +1,9 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* BODY */
 body {
     font-family: 'Courier New', monospace;
     background: black;
@@ -13,7 +11,6 @@ body {
     overflow: hidden;
 }
 
-/* MATRIX */
 #matrix {
     position: fixed;
     width: 100%;
@@ -21,20 +18,17 @@ body {
     z-index: 0;
 }
 
-/* CONTENEDOR */
 .container {
     position: relative;
     z-index: 2;
     padding: 40px;
 }
 
-/* TITULO */
 h1 {
     margin-bottom: 20px;
     text-shadow: 0 0 10px #00ff9f;
 }
 
-/* TABLA */
 .table-container {
     background: rgba(0,0,0,0.85);
     border: 1px solid #00ff9f;
@@ -61,7 +55,6 @@ tr:hover {
     background: rgba(0,255,159,0.05);
 }
 
-/* 🔍 BUSCADOR */
 .search-box {
     margin-bottom: 15px;
 }
@@ -75,7 +68,6 @@ tr:hover {
     outline: none;
 }
 
-/* FORM CONTENEDOR */
 #studentForm {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -87,7 +79,7 @@ tr:hover {
     box-shadow: 0 0 15px #00ff9f;
     padding: 15px;
 }
-/* INPUTS */
+
 #studentForm input {
     all: unset;
     padding: 10px;
@@ -97,7 +89,6 @@ tr:hover {
     outline: none;
 }
 
-/* BOTÓN */
 #studentForm button {
     grid-column: span 3;
     padding: 10px;

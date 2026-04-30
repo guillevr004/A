@@ -11,13 +11,11 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const error = document.getElementById("errorMessage");
 
-// 🔐 Si ya hay sesión → dashboard
 const user = obtenerUsuario();
 if (user) {
     window.location.href = "/src/pages/dashboard/index.html";
 }
 
-// 🚀 LOGIN
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 

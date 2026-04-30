@@ -1,7 +1,6 @@
 import { request } from "../../shared/js/api.js";
 import { obtenerUsuario } from "../../shared/js/storage.js";
 
-// 🔒 PROTECCIÓN
 const user = obtenerUsuario();
 
 if(!user){
@@ -11,13 +10,11 @@ if(!user){
 let editingId = null;
 let userToDelete = null;
 
-// 🗑️ ABRIR MODAL DE CONFIRMACIÓN
 window.deleteUser = (id) => {
     userToDelete = id;
     document.getElementById("confirmModal").classList.remove("hidden");
 };
 
-// ✅ CONFIRMAR ELIMINACIÓN
 document.getElementById("confirmYes").addEventListener("click", async () => {
     await request(`/users/${userToDelete}`, {
         method: "DELETE"
@@ -29,12 +26,10 @@ document.getElementById("confirmYes").addEventListener("click", async () => {
     console.log(">> USER DELETED SUCCESSFULLY");
 });
 
-// ❌ CANCELAR
 document.getElementById("confirmNo").addEventListener("click", () => {
     document.getElementById("confirmModal").classList.add("hidden");
 });
 
-// 🔄 CARGAR USUARIOS
 const loadUsers = async () => {
     const res = await request("/users");
 
@@ -58,7 +53,6 @@ const loadUsers = async () => {
     });
 };
 
-// ➕ CREAR / EDITAR
 document.getElementById("userForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -87,7 +81,6 @@ document.getElementById("userForm").addEventListener("submit", async (e) => {
     loadUsers();
 });
 
-// ✏️ EDITAR
 window.editUser = (id, fn, ln, em, rl) => {
     editingId = id;
 
@@ -97,7 +90,6 @@ window.editUser = (id, fn, ln, em, rl) => {
     role.value = rl;
 };
 
-// 🔍 BUSCAR
 document.getElementById("searchBtn").addEventListener("click", async () => {
     const email = document.getElementById("searchEmail").value;
 
@@ -110,5 +102,4 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
     }
 });
 
-// 🚀 INIT
 loadUsers();

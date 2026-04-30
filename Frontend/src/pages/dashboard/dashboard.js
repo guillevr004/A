@@ -1,25 +1,20 @@
-// 🔹 IMPORTS
 import { obtenerUsuario, cerrarSesion } from "../../shared/js/storage.js";
 import { request } from "../../shared/js/api.js";
 import Chart from "chart.js/auto";
 
-// 🔒 PROTEGER
 const user = obtenerUsuario();
 
 if(!user){
     window.location.href = "../auth/index.html";
 }
 
-// 👤 BIENVENIDA
 document.getElementById("welcome").textContent = `Bienvenido ${user.name}`;
 
-// 🚪 LOGOUT
 document.getElementById("logout").addEventListener("click", () => {
     cerrarSesion();
     window.location.href = "../auth/index.html";
 });
 
-// 🖥️ TERMINAL
 const mostrarTerminal = (mensaje) => {
     const terminal = document.querySelector(".terminal");
 
@@ -30,7 +25,6 @@ const mostrarTerminal = (mensaje) => {
     terminal.scrollTop = terminal.scrollHeight;
 };
 
-// 📊 DASHBOARD
 const loadDashboard = async () => {
     try{
         const res = await request("/dashboard");
@@ -38,7 +32,6 @@ const loadDashboard = async () => {
         if(res.ok){
             const data = res.dashboard;
 
-            // 🔢 CARDS
             document.getElementById("students").textContent =
                 data.totalStudents === 0 ? "No data" : data.totalStudents;
 
@@ -48,7 +41,6 @@ const loadDashboard = async () => {
             document.getElementById("absences").textContent =
                 data.absencesToday === 0 ? "No data" : data.absencesToday;
 
-            // 📊 CHART 1 - DONUT
             new Chart(document.getElementById("studentsChart"), {
                 type: "doughnut",
                 data: {
@@ -80,7 +72,7 @@ const loadDashboard = async () => {
                     }
                 }]
             });
-            // 📊 CHART 2 - BARRAS
+            
             new Chart(document.getElementById("paymentsChart"), {
                 type: "bar",
                 data: {
@@ -123,7 +115,6 @@ const loadDashboard = async () => {
                 }]
             });
 
-            // 🖥️ TERMINAL
             mostrarTerminal(">> ACCESS GRANTED");
             mostrarTerminal(">> DATA VISUALIZED");
             mostrarTerminal(">> SYSTEM ONLINE");
@@ -135,5 +126,4 @@ const loadDashboard = async () => {
     }
 };
 
-// 🚀 INICIAR
 loadDashboard();

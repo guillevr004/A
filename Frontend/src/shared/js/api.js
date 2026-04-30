@@ -16,7 +16,6 @@ export async function request(endpoint, options = {}) {
         body: options.body
     });
 
-    // ⚠️ evita error si no hay JSON
     let data;
     try {
         data = await response.json();
@@ -24,13 +23,11 @@ export async function request(endpoint, options = {}) {
         data = {};
     }
 
-    // ❌ 404 → página
     if (response.status === 404) {
         window.location.href = "/src/pages/404/index.html";
         return;
     }
 
-    // ❌ otros errores
     if (!response.ok) {
         throw new Error(data.message || "Error del servidor");
     }

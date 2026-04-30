@@ -11,7 +11,6 @@ if (!user) {
 
 let studentsData = [];
 
-// 🔄 CARGAR ESTUDIANTES
 const loadStudents = async () => {
     try {
         const res = await request("/students");
@@ -24,7 +23,6 @@ const loadStudents = async () => {
     }
 };
 
-// 🧱 RENDER TABLA
 const renderStudents = (data) => {
     const table = document.getElementById("studentsTable");
     table.innerHTML = "";
@@ -45,7 +43,6 @@ const renderStudents = (data) => {
     });
 };
 
-// 🔍 FILTRO
 document.getElementById("searchStudent").addEventListener("input", (e) => {
     const value = e.target.value.toLowerCase();
 
@@ -58,7 +55,6 @@ document.getElementById("searchStudent").addEventListener("input", (e) => {
     renderStudents(filtered);
 });
 
-// ➕ CREAR ESTUDIANTE
 document.getElementById("studentForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     console.log("FORM ENVIADO");
@@ -112,5 +108,4 @@ document.getElementById("studentForm").addEventListener("submit", async (e) => {
     }
 });
 
-// 🚀 INIT
 loadStudents();
