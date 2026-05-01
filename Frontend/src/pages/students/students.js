@@ -3,6 +3,8 @@ import { obtenerUsuario } from "../../shared/js/storage.js";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
+let editingId = null;
+
 const user = obtenerUsuario();
 
 if (!user) {
@@ -37,6 +39,10 @@ const renderStudents = (data) => {
             <td>${s.grade || ""}</td>
             <td>${s.school_year || ""}</td>
             <td>${s.status || "active"}</td>
+            <td>
+                <button onclick="editStudent('${s.id}', '${s.student_code}', '${s.first_name}', '${s.last_name}', '${s.document_type}', '${s.document_number}', '${s.grade}', '${s.school_year}')">Edit</button>
+                <button onclick="deleteStudent('${s.id}')">Delete</button>
+            </td>
         `;
 
         table.appendChild(row);
@@ -69,24 +75,48 @@ document.getElementById("studentForm").addEventListener("submit", async (e) => {
     };
 
     try {
-        await request("/students", {
-            method: "POST",
-            body: JSON.stringify(data)
-        });
+        if (editingId) {
+            await request(`/students/${editingId}`, {
+                method: "PUT",
+                body: JSON.stringify(data)
+            });
 
-        Toastify({
-        text: "📚 Estudiante creado!",
-        duration: 2000,
-        gravity: "top",
-        position: "right",
-        style: {
-            background: "black",
-            color: "#00ff9f",
-            border: "1px solid #00ff9f",
-            boxShadow: "0 0 10px #00ff9f"
+            Toastify({
+                text: "✏️ Estudiante actualizado",
+                duration: 2000,
+                gravity: "top",
+                position: "right",
+                style: {
+                    background: "black",
+                    color: "#00ff9f",
+                    border: "1px solid #00ff9f",
+                    boxShadow: "0 0 10px #00ff9f"
+                }
+            }).showToast();
+
+            editingId = null;
+
+        } else {
+            await request("/students", {
+                method: "POST",
+                body: JSON.stringify(data)
+            });
+
+            Toastify({
+                text: "📚 Estudiante creado",
+                duration: 2000,
+                gravity: "top",
+                position: "right",
+                style: {
+                    background: "black",
+                    color: "#00ff9f",
+                    border: "1px solid #00ff9f",
+                    boxShadow: "0 0 10px #00ff9f"
+                }
+            }).showToast();
         }
-        }).showToast();
 
+        document.getElementById("cancelEdit").style.display = "none";
         document.getElementById("studentForm").reset();
         loadStudents();
 
@@ -108,4 +138,62 @@ document.getElementById("studentForm").addEventListener("submit", async (e) => {
     }
 });
 
+window.editStudent = (id, code, fn, ln, dt, dn, gr, yr) => {
+    editingId = id;
+
+    student_code.value = code;
+    first_name.value = fn;
+    last_name.value = ln;
+    document_type.value = dt;
+    document_number.value = dn;
+    grade.value = gr;
+    school_year.value = yr;
+
+    document.getElementById("cancelEdit").style.display = "block";
+};
+
+window.deleteStudent = async (id) => {
+    if (!confirm("¿Eliminar estudiante?")) return;
+
+    await request(`/students/${id}`, {
+        method: "DELETE"
+    });
+
+    Toastify({
+        text: "🗑️ Estudiante eliminado",
+        duration: 2000,
+        gravity: "top",
+        position: "right",
+        style: {
+            background: "black",
+            color: "#ff4b4b",
+            border: "1px solid #ff4b4b",
+            boxShadow: "0 0 10px #ff4b4b"
+        }
+    }).showToast();
+
+    loadStudents();
+};
+
 loadStudents();
+
+document.getElementById("cancelEdit").addEventListener("click", () => {
+    editingId = null;
+
+    document.getElementById("studentForm").reset();
+
+    document.getElementById("cancelEdit").style.display = "none";
+
+    Toastify({
+        text: "❌ Edición cancelada",
+        duration: 1500,
+        gravity: "top",
+        position: "right",
+        style: {
+            background: "black",
+            color: "#ff4b4b",
+            border: "1px solid #ff4b4b",
+            boxShadow: "0 0 10px #ff4b4b"
+        }
+    }).showToast();
+});

@@ -15,3 +15,18 @@ export const create = async (data) => {
         [id, student_code, first_name, last_name, document_type, document_number, birth_date, grade, school_year]
     );
 };
+
+export const update = async (id, data) => {
+    const { student_code, first_name, last_name, document_type, document_number, grade, school_year } = data;
+
+    await db.query(
+        `UPDATE students 
+         SET student_code=?, first_name=?, last_name=?, document_type=?, document_number=?, grade=?, school_year=?
+         WHERE id=?`,
+        [student_code, first_name, last_name, document_type, document_number, grade, school_year, id]
+    );
+};
+
+export const remove = async (id) => {
+    await db.query("DELETE FROM students WHERE id = ?", [id]);
+};
