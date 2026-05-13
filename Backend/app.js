@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import bycrypt from "bcrypt";
 import cors from "cors";
@@ -10,6 +13,7 @@ import attendanceRoutes from "./routes/attendances.route.js";
 import notificationRoutes from "./routes/notifications.route.js";
 import authRoutes from "./routes/auth.route.js"
 import dashboardRoutes from "./routes/dashboard.route.js"
+import whatsappRoutes from "./Modules/Whatsapp/whatsapp.routes.js"
 
 const app = express();
 app.use(cors({
@@ -26,6 +30,7 @@ app.use("/api", attendanceRoutes);
 app.use("/api", notificationRoutes);
 app.use("/api", authRoutes);
 app.use("/api", dashboardRoutes);
+app.use("/api", whatsappRoutes);
 app.use((req, res) => {
     res.status(404).json({
         ok: false,

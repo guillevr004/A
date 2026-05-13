@@ -16,3 +16,12 @@ export const create = async (data) => {
         [id, account_receivable_id, recorded_by_user_id, payment_date, amount_paid, payment_method, reference, created_at]
     );
 };
+
+export const updateStatus = async (id, status) => {
+
+    await db.query(
+        "UPDATE payments SET status = ? WHERE id = ?",
+        [status, id]
+    );
+
+};
